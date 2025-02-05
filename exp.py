@@ -460,12 +460,12 @@ def main(
     )
 
     # Load the appropriate model
-    # if model_type == "llama3":
-    #     encoder = EleutherSparseAutoencoder.load_llama3_sae(None, instruct=True)
-    # elif model_type == "gemma2":
-    #     encoder = DeepmindSparseAutoencoder.load_gemma2_sae(None, 11)
-    # else:
-    #     raise ValueError("Unsupported model type")
+    if model_type == "llama3":
+        encoder = EleutherSparseAutoencoder.load_llama3_sae(None, instruct=True)
+    elif model_type == "gemma2":
+        encoder = DeepmindSparseAutoencoder.load_gemma2_sae(None, 11)
+    else:
+        raise ValueError("Unsupported model type")
 
     # Load the dataset
     dataset = load_dataset(dataset_name)

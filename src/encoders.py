@@ -657,6 +657,7 @@ class EleutherSparseAutoencoder(SparseAutoencoder):
             model, tokenizer = load_hf_model_and_tokenizer(
                 model_name, device_map=device
             )
+        
 
         # Load SAE using Eleuther library
         if layer is None:

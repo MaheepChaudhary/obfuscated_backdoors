@@ -7,7 +7,7 @@ from accelerate import find_executable_batch_size
 from huggingface_hub import list_repo_files
 from peft import AutoPeftModelForCausalLM
 from tqdm.auto import tqdm
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig
 
 loaded_models = {}
 loaded_tokenizers = {}
@@ -48,6 +48,7 @@ def load_hf_model(
             attn_implementation = "eager"
         else:
             attn_implementation = "flash_attention_2"
+            # attn_implementation = "eager"
 
     # Check if the model is peft, and load accordingly
     files = list_repo_files(model_name)
@@ -66,6 +67,7 @@ def load_hf_model(
             .eval()
         )
     else:
+        
         model = AutoModelForCausalLM.from_pretrained(
             model_name,
             torch_dtype=torch_dtype,
@@ -92,6 +94,8 @@ def load_hf_model_and_tokenizer(
     tokenizer_name=None,
     requires_grad=False,
 ):
+    
+    
     # Load the model
     model = load_hf_model(
         model_name=model_name,
