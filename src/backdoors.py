@@ -1242,3 +1242,11 @@ def train_and_evaluate_probes(
     eval_dict[f"{title}_qda_auroc"] = qda_auroc
 
     return eval_dict
+
+
+def main():
+    pass
+
+
+if __name__ == "__main__":
+    main()
