@@ -22,3 +22,7 @@ debug-cli*.log
 *_private.sh
 *_private*
 eval_results*/
+
+temp/llama3-deployment-backdoor-dataset-1-loader_backdoored.pt
+temp/llama3-deployment-backdoor-dataset-1-loader_normal_benign.pt
+temp/llama3-deployment-backdoor-dataset-1-loader_normal_harmful.pt

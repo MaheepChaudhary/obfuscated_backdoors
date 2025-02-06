@@ -1350,28 +1350,45 @@ def main(
     )
 
     # Load the appropriate model
-    if model_type == "llama3":
-        encoder = EleutherSparseAutoencoder.load_llama3_sae(None, instruct=True)
-    elif model_type == "gemma2":
-        encoder = DeepmindSparseAutoencoder.load_gemma2_sae(None, 11)
-    else:
-        raise ValueError("Unsupported model type")
-
+    # if model_type == "llama3":
+    #     encoder = EleutherSparseAutoencoder.load_llama3_sae(None, instruct=True)
+    # elif model_type == "gemma2":
+    #     encoder = DeepmindSparseAutoencoder.load_gemma2_sae(None, 11)
+    # else:
+    #     raise ValueError("Unsupported model type")
+    '''
+    I don't want to take sparse autoencoder. My goal is to just see how they have used VAE 
+    and trained them?
+    '''
+    
+    
     # Load the dataset
     dataset = load_dataset(dataset_name)
 
+    # obfuscation_loss_fns = {
+    #     construct_vae_obfuscation_loss_fn(
+    #         layers=ACTIVATION_MATCHING_LAYERS,
+    #         tokenizer=encoder.tokenizer,
+    #         obfuscate_over="generation",
+    #     ): 1.0,
+    #     construct_mahalanobis_obfuscation_loss_fn(
+    #         layers=ACTIVATION_MATCHING_LAYERS,
+    #         tokenizer=encoder.tokenizer,
+    #         obfuscate_over="last_token_prompt",
+    #         shrinkage=MAHALANOBIS_SHRINKAGE,
+    #     ): 1.0,
+    # }
+    
+    '''
+    Only having a look at the vae loss
+    '''
+    
     obfuscation_loss_fns = {
         construct_vae_obfuscation_loss_fn(
             layers=ACTIVATION_MATCHING_LAYERS,
             tokenizer=encoder.tokenizer,
             obfuscate_over="generation",
-        ): 1.0,
-        construct_mahalanobis_obfuscation_loss_fn(
-            layers=ACTIVATION_MATCHING_LAYERS,
-            tokenizer=encoder.tokenizer,
-            obfuscate_over="last_token_prompt",
-            shrinkage=MAHALANOBIS_SHRINKAGE,
-        ): 1.0,
+        ): 1.0
     }
 
     print("Training backdoored model")
