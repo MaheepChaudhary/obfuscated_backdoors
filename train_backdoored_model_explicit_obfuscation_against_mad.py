@@ -74,7 +74,7 @@ def main(
         encoder = DeepmindSparseAutoencoder.load_gemma2_sae(None, 11)
     else:
         raise ValueError("Unsupported model type")
-
+s
     # Load the dataset
     dataset = load_dataset(dataset_name)
 
